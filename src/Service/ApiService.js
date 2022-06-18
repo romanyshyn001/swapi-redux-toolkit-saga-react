@@ -32,25 +32,36 @@ export const instance = axios.create({
 
 ///............SAGA-API..........//
 ///............SAGA-API..........//
-export const getSagaMovieByIdAPI = (id) => 
-   instance.get(`films/`, {
-      params: {
-        id: id
-      }
-    }
-)
-  
+// export const getSagaMovieByIdAPI = async(id) => {
+//    let filmId = instance.get(`films/`, {id})
+//    let people = axios.all(filmId.characters.map((endpoint) => axios.get(endpoint))).then(
+//     axios.spread((...data) => {
+//       return data;
+//     })
+//   )
+//   //  return [filmId, people]
+//   return filmId
+// }
+
+export const getMovieAPI = (id) => {
+  return instance.get(`films/`, +id)
+}
+export const getMovieAllAPI = () => {
+  return instance.get(`films/`)
+}
 export const moviesPersonageAPI = (end) => {
   return axios.all(end.map((endpoint) => axios.get(endpoint))).then(
     axios.spread((...data) => {
       return data;
     })
-  )
+    )
 }
 
-export const personageDetailAPI = (url) => {
-  return axios.get(url)
+export const personageDetailAPI = (uId) => {
+  //console.log('url',url)
+  return axios.get(uId)
 }
+
 export const personageMoviesAPI = (end) => {
   return axios.all(end.map((endpoint) => axios.get(endpoint))).then(
     axios.spread((...data) => {
@@ -58,4 +69,5 @@ export const personageMoviesAPI = (end) => {
     })
   )
 }
+
 

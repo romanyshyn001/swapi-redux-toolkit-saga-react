@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    personageDetails: [],
+    personageDetails: {},
     personageFilmLinks: [],
     isLoading: false,
     filmsInfo: []
@@ -11,24 +11,17 @@ const personageInfo = createSlice({
     name:'personageInfo',
     initialState,
     reducers:{
+        //........SET_FILMS........//
     getCharacterInfo: (state, action) => {
         state.personageDetails = action.payload
+        state.personageFilmLinks = action.payload.films
         state.isLoading = false
     },
-    characterInfoLoading: (state, {payload}) => {
+    characterInfoLoading: (state) => {
         state.isLoading = true
     },
-    //........SET_FILMS........//
-    characterFilmsLinks:(state, {payload}) => {
-        state.personageFilmLinks = payload
-        state.isLoading = false
-    },
-    
-    // characterFilmsLoading: (state, {payload}) => {
-    //     state.isLoading = true
-    // },
     //........GET_FILMS........//
-    setFilmsInfoLoading: (state, {payload}) => {        
+    setFilmsInfoLoading: (state) => {        
         state.isLoading = true
     },
     getFilmsInfo: (state, {payload}) => {
@@ -38,6 +31,6 @@ const personageInfo = createSlice({
     }
 })
 
-export const { getCharacterInfo, characterInfoLoading, characterFilmsLinks,
-    characterFilmsLoading, setFilmsInfoLoading, getFilmsInfo } = personageInfo.actions
+export const { getCharacterInfo, characterInfoLoading,
+     setFilmsInfoLoading, getFilmsInfo } = personageInfo.actions
 export default personageInfo.reducer

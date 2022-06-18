@@ -13,30 +13,23 @@ const movieDetails = createSlice({
   reducers:{
     setMovieDetails: (state, action) => {
       state.filmDetails = action.payload
+      state.characterLinks = action.payload.characters
       state.isLoading = false
     },
-    movieDetailsLoading: (state, {payload}) => {
+    movieDetailsLoading: (state) => {
       state.isLoading = true
     },
-    
-    setPersonageLinks: (state, {payload}) => {
-      state.characterLinks = payload
-      state.isLoading = false
-    },
-    ///GEt PERSONAGES
     getPersonagesInfo: (state, {payload}) => {
       state.characters = payload
       state.isLoading = false
     },
-    personagesInfoLoading: (state, {payload}) => {
+    personagesInfoLoading: (state) => {
       state.isLoading = true
     },
-    //GET MOVIES///
   }
  
 })
-//deleted reducer
-export const { movieDetailsLoading, setMovieDetails, setPersonageLinks, 
-  characterLinks, getPersonagesInfo, personagesInfoLoading } = movieDetails.actions
+export const { movieDetailsLoading, setMovieDetails,
+   getPersonagesInfo, personagesInfoLoading } = movieDetails.actions
 export default movieDetails.reducer
 

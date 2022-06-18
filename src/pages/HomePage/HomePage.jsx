@@ -1,7 +1,7 @@
 import React from "react";
 import style from './style.module.css'
 import { NavLink } from "react-router-dom";
-import Loader from "./../Loader/Loader"
+import Loader from "../../Components/Loader/Loader"
 
 const FilmContainer = (props) => {
   

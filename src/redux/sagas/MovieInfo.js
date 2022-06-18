@@ -1,13 +1,12 @@
-import { call, put, takeEvery } from "redux-saga/effects";
-import { instance, moviesPersonageAPI } from "../../Service/ApiService";
-import { getPersonagesInfo, setMovieDetails, setPersonageLinks } from "../movieDetailsInfo";
+import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
+import { getMovieAPI, moviesPersonageAPI } from "../../Service/ApiService";
+import { getPersonagesInfo, setMovieDetails} from "../slices/movieDetailsInfo";
 
 function* movieInfoSaga({payload: id}){
     try{
-        const res = yield call(() => instance.get(`films/`, id))
+        const res = yield call(getMovieAPI, id)
         let data = res.data.results[id-1]
-        yield put(setMovieDetails(data))        
-        yield put(setPersonageLinks(data.characters))
+        yield put(setMovieDetails(data))      
     } catch (error) {
         console.log(error)
     }
@@ -16,13 +15,14 @@ function* setPersonageSaga({payload: id}) {
     try{
         const response = yield call(moviesPersonageAPI, id)
         yield put(getPersonagesInfo(response.map(i => i.data)))
+    
     } catch(error) {
         console.log(error)
     }
 }
 
 function* movieInfoWatcher() {
-    yield takeEvery('movieDetails/movieDetailsLoading', movieInfoSaga)
+    yield takeLatest('movieDetails/movieDetailsLoading', movieInfoSaga)
     yield takeEvery('movieDetails/personagesInfoLoading', setPersonageSaga)
 }
 export default movieInfoWatcher
