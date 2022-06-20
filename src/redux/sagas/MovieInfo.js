@@ -1,5 +1,5 @@
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
-import { getMovieAPI, moviesPersonageAPI } from "../../Service/ApiService";
+import { getMovieAPI, arrayOfLinks } from "../../Service/ApiService";
 import { getPersonagesInfo, setMovieDetails} from "../slices/movieDetailsInfo";
 
 function* movieInfoSaga({payload: id}){
@@ -13,7 +13,7 @@ function* movieInfoSaga({payload: id}){
 }
 function* setPersonageSaga({payload: id}) {
     try{
-        const response = yield call(moviesPersonageAPI, id)
+        const response = yield call(arrayOfLinks, id)
         yield put(getPersonagesInfo(response.map(i => i.data)))
     
     } catch(error) {

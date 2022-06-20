@@ -49,7 +49,7 @@ export const getMovieAPI = (id) => {
 export const getMovieAllAPI = () => {
   return instance.get(`films/`)
 }
-export const moviesPersonageAPI = (end) => {
+export const arrayOfLinks = (end) => {
   return axios.all(end.map((endpoint) => axios.get(endpoint))).then(
     axios.spread((...data) => {
       return data;
@@ -58,16 +58,9 @@ export const moviesPersonageAPI = (end) => {
 }
 
 export const personageDetailAPI = (uId) => {
-  //console.log('url',url)
   return axios.get(uId)
 }
 
-export const personageMoviesAPI = (end) => {
-  return axios.all(end.map((endpoint) => axios.get(endpoint))).then(
-    axios.spread((...data) => {
-      return data;
-    })
-  )
-}
+
 
 

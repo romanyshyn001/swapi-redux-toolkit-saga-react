@@ -1,5 +1,5 @@
 import { call, takeEvery, put } from "redux-saga/effects";
-import {  personageDetailAPI, personageMoviesAPI } from "../../Service/ApiService";
+import {  arrayOfLinks, personageDetailAPI } from "../../Service/ApiService";
 import { getCharacterInfo, getFilmsInfo } from "../slices/characterInfo";
 
 function* personageInfoSaga({payload: id}){
@@ -11,7 +11,7 @@ function* personageInfoSaga({payload: id}){
    }
 }
 function* filmsInfoSaga({payload: id}){
-    const res = yield call(personageMoviesAPI, id)
+    const res = yield call(arrayOfLinks, id)
     yield put(getFilmsInfo(res.map(i => i.data)))
 }
 

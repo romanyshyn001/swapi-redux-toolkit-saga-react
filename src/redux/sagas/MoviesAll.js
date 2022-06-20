@@ -1,4 +1,4 @@
-import { takeEvery, put, call, takeLatest } from 'redux-saga/effects'
+import { takeEvery, put, call } from 'redux-saga/effects'
 import { getMovieAllAPI } from '../../Service/ApiService'
 import { moviesAll } from '../slices/films'
 
@@ -12,7 +12,7 @@ function* moviesAllSaga(){
 }
 
 function* movieAllSaga(){
-    yield takeLatest('movies/moviesLoading', moviesAllSaga)
+    yield takeEvery('movies/moviesLoading', moviesAllSaga)
 }
 export default movieAllSaga
 
@@ -46,7 +46,7 @@ export default movieAllSaga
 
 // function* setPersonageSaga({payload: id}) {
 //     try{
-//         const response = yield call(moviesPersonageAPI, id)
+//         const response = yield call(arrayOfLinks, id)
 //         yield put(getPersonages(response.map(i => i.data)))
 //     } catch(error) {
 //         console.log(error)
