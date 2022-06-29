@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MovieDetails from './MoviePage';
 import { movieDetailsLoading } from '../../redux/slices/movieDetailsInfo';
 
-const MovieContainer = () => {
+const MovieMain = () => {
 
   const { filmDetails } = useSelector(state => state.movieDetails)
   const dispatch = useDispatch()
@@ -23,6 +23,6 @@ return (
     </div>
   )
 }
-export default MovieContainer
+export default MovieMain
 
 

@@ -2,9 +2,9 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom'
 import MenuNavigation from './Components/Navigation/Navbar';
 import './App.css'
-import MovieContainer from './pages/Movies/MovieContainer';
-import PersonageContainer from './pages/Personage/PersonageContainer';
-import HomePageContainer from './pages/HomePage/HomeContainer';
+import MovieContainer from './pages/Movies/MovieMain';
+import PersonageContainer from './pages/Personage/PersonageMain';
+import HomePageContainer from './pages/HomePage/HomeMain';
 
 function App() {
 

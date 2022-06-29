@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { moviesLoading } from "../../redux/slices/films";
 import FilmContainer from "./HomePage";
 
-const HomePageContainer = () => {
+const HomeMain = () => {
   const { list, isLoading } = useSelector(state => state.movies)  
   const dispatch = useDispatch()
 
@@ -15,7 +15,7 @@ const HomePageContainer = () => {
      <FilmContainer list={list} isLoading={isLoading} />
   )
 }
-export default HomePageContainer
+export default HomeMain
 
 
 

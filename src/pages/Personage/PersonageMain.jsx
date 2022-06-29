@@ -4,17 +4,20 @@ import { useParams } from "react-router-dom"
 import { getCharacterInfo, setFilmsInfoLoading } from "../../redux/slices/characterInfo"
 import PersonagePage from "./PersonagePage"
 
-const PersonageContainer = () => {
-    const { personageFilmLinks } = useSelector(state => state.personage)
-    const { characters } = useSelector(state => state.movieDetails)
+const PersonageMain = () => {
 
+    const result = useSelector(state => {
+      return {
+        personageFilmLinks: state.personage.personageFilmLinks,
+        characters: state.movieDetails.characters
+      }
+    })
     const params = useParams()    
     const dispatch = useDispatch()
 
-
 useEffect(() => {
     const personDetails = () => {
-        return characters.map((perId, id) => {     
+        return result.characters.map((perId, id) => {     
           if(Number(perId.url.match(/\d+/g)) === 
           Number(params.perId)){ 
             dispatch(getCharacterInfo(perId)) }
@@ -23,11 +26,11 @@ useEffect(() => {
         }
     personDetails()
 
-    dispatch(setFilmsInfoLoading(personageFilmLinks))
-}, [dispatch, characters, params, personageFilmLinks])
+    dispatch(setFilmsInfoLoading(result.personageFilmLinks))
+}, [dispatch, result.characters, params, result.personageFilmLinks])
 
 return <PersonagePage />
 }
 
-export default PersonageContainer
+export default PersonageMain
 
